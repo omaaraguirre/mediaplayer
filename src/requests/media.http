@@ -1,0 +1,6 @@
+### Get playlists
+GET https://api.jamendo.com/v3.0/playlists/?client_id=efe5bb73&format=jsonpretty&order=creationdate_desc&namesearch=electro
+
+### Get playlist tracks by ID
+GET https://api.jamendo.com/v3.0/playlists/tracks/?client_id=efe5bb73&format=jsonpretty&id=500661123
+
