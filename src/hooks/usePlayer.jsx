@@ -29,6 +29,15 @@ const usePlayer = () => {
   }, [currentSong])
 
   useEffect(() => {
+    if (navigator?.mediaSession) {
+      navigator.mediaSession.setActionHandler('play', play)
+      navigator.mediaSession.setActionHandler('pause', pause)
+      navigator.mediaSession.setActionHandler('nexttrack', nextSong)
+      navigator.mediaSession.setActionHandler('previoustrack', prevSong)
+    }
+  }, [currentSong])
+
+  useEffect(() => {
     const timer = setInterval(() => {
       if (howlerRef?.current?.seek) {
         const current = howlerRef.current.seek()
