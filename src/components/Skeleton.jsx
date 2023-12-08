@@ -1,5 +1,5 @@
 const Skeleton = () => {
-  const classes = 'bg-white/30 rounded-xl animate-pulse'
+  const classes = 'bg-light/30 rounded-xl animate-pulse'
   return (
     <main className='flex flex-col justify-between items-center min-h-dscreen w-[min(90%,800px)] mx-auto py-5'>
       <div className='w-full flex justify-between items-center'>

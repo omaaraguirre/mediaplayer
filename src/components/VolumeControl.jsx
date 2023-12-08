@@ -14,7 +14,7 @@ const VolumeControl = () => {
       onBlur={() => setShow(false)}
       className='relative'
     >
-      <div className={`bg-black/70 backdrop-blur-md rounded-full absolute bottom-7 left-1/2 -translate-x-1/2 overflow-hidden transition-all duration-500 ${show ? 'p-2 h-32 opacity-100' : 'h-0 opacity-0'}`}>
+      <div className={`bg-dark/70 backdrop-blur-md rounded-full absolute bottom-7 left-1/2 -translate-x-1/2 overflow-hidden transition-all duration-500 ${show ? 'p-2 h-32 opacity-100' : 'h-0 opacity-0'}`}>
         <input
           type='range'
           min='0'
@@ -22,11 +22,11 @@ const VolumeControl = () => {
           step='0.01'
           value={volume}
           onChange={e => setVolume(Number(e.target.value))}
-          className='w-4 h-full accent-red-500 cursor-pointer [-webkit-appearance:slider-vertical]'
+          className='w-4 h-full accent-primary cursor-pointer [-webkit-appearance:slider-vertical]'
         />
       </div>
       <button
-        className={`text-xl sm:text-2xl hover:text-red-500 hover:scale-110 ${muted && 'text-red-500'} transition-all duration-300`}
+        className={`text-xl sm:text-2xl hover:text-primary hover:scale-110 ${muted && 'text-primary'} transition-all duration-300`}
         onClick={toggleMuted}
       >
         {muted ? <FaVolumeMute /> : volume <= 0.5 ? <FaVolumeDown /> : <FaVolumeUp />}

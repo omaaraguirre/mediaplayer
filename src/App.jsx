@@ -8,8 +8,8 @@ const App = () => {
 
   return (
     <>
-      <div className='absolute inset-0 -z-20 bg-gradient-to-t from-black via-red-950 to-red-900' />
-      <main className='flex flex-col absolute top-0 bottom-0 left-0 right-0 w-[min(90%,800px)] mx-auto text-white font-poppins'>
+      <div className='absolute inset-0 -z-20 bg-gradient-to-t from-dark to-secondary' />
+      <main className='flex flex-col absolute top-0 bottom-0 left-0 right-0 w-[min(90%,800px)] mx-auto text-light font-poppins'>
         {
           loading
             ? <Skeleton />

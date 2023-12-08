@@ -15,13 +15,13 @@ const MediaButtons = () => {
           <>
             <RateControl />
             <button
-              className={`text-xl sm:text-2xl hover:text-red-500 hover:scale-110 ${shuffle && 'text-red-500'} transition-all duration-300`}
+              className={`text-xl sm:text-2xl hover:text-primary hover:scale-110 ${shuffle && 'text-primary'} transition-all duration-300`}
               onClick={toggleShuffle}
             >
               <BsShuffle />
             </button>
             <button
-              className='text-3xl sm:text-5xl hover:text-red-500 hover:scale-110 transition-all duration-300'
+              className='text-3xl sm:text-5xl hover:text-primary hover:scale-110 transition-all duration-300'
               onClick={prevSong}
             >
               <GiPreviousButton />
@@ -31,7 +31,7 @@ const MediaButtons = () => {
       }
       <button
         onClick={playing ? pause : play}
-        className={`${showed ? 'text-3xl sm:text-5xl hover:text-red-500 hover:scale-110' : 'text-xl sm:text-2xl'} transition-all duration-300`}
+        className={`${showed ? 'text-3xl sm:text-5xl hover:text-primary hover:scale-110' : 'text-xl sm:text-2xl'} transition-all duration-300`}
       >
         {playing ? <FaPause /> : <FaPlay className='translate-x-1' />}
       </button>
@@ -39,13 +39,13 @@ const MediaButtons = () => {
         showed && (
           <>
             <button
-              className='text-3xl sm:text-5xl hover:text-red-500 hover:scale-110 transition-all duration-300'
+              className='text-3xl sm:text-5xl hover:text-primary hover:scale-110 transition-all duration-300'
               onClick={nextSong}
             >
               <GiNextButton />
             </button>
             <button
-              className={`text-xl sm:text-2xl hover:text-red-500 hover:scale-110 ${repeat && 'text-red-500'} transition-all duration-300`}
+              className={`text-xl sm:text-2xl hover:text-primary hover:scale-110 ${repeat && 'text-primary'} transition-all duration-300`}
               onClick={toggleRepeat}
             >
               <BsRepeat1 />
