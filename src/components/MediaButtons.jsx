@@ -2,6 +2,8 @@ import { FaPlay, FaPause } from 'react-icons/fa'
 import { BsShuffle, BsRepeat1 } from 'react-icons/bs'
 import { GiPreviousButton, GiNextButton } from 'react-icons/gi'
 import usePlayer from '../hooks/usePlayer'
+import VolumeControl from './VolumeControl'
+import RateControl from './RateControl'
 
 const MediaButtons = () => {
   const { showed, playing, play, pause, nextSong, prevSong, repeat, toggleRepeat, shuffle, toggleShuffle } = usePlayer()
@@ -11,14 +13,15 @@ const MediaButtons = () => {
       {
         showed && (
           <>
+            <RateControl />
             <button
-              className={`text-xl sm:text-2xl ${shuffle && 'text-red-500 scale-125'} transition-all duration-300`}
+              className={`text-xl sm:text-2xl hover:text-red-500 hover:scale-110 ${shuffle && 'text-red-500'} transition-all duration-300`}
               onClick={toggleShuffle}
             >
               <BsShuffle />
             </button>
             <button
-              className='text-3xl sm:text-5xl active:text-red-500 active:scale-125 transition-all duration-100'
+              className='text-3xl sm:text-5xl hover:text-red-500 hover:scale-110 transition-all duration-300'
               onClick={prevSong}
             >
               <GiPreviousButton />
@@ -28,7 +31,7 @@ const MediaButtons = () => {
       }
       <button
         onClick={playing ? pause : play}
-        className={`${showed ? 'text-3xl sm:text-5xl active:text-red-500' : 'text-xl sm:text-2xl'} transition-all duration-100`}
+        className={`${showed ? 'text-3xl sm:text-5xl hover:text-red-500 hover:scale-110' : 'text-xl sm:text-2xl'} transition-all duration-300`}
       >
         {playing ? <FaPause /> : <FaPlay className='translate-x-1' />}
       </button>
@@ -36,17 +39,18 @@ const MediaButtons = () => {
         showed && (
           <>
             <button
-              className='text-3xl sm:text-5xl  active:text-red-500 active:scale-125 transition-all duration-100'
+              className='text-3xl sm:text-5xl hover:text-red-500 hover:scale-110 transition-all duration-300'
               onClick={nextSong}
             >
               <GiNextButton />
             </button>
             <button
-              className={`text-xl sm:text-2xl ${repeat && 'text-red-500 scale-125'} transition-all duration-300`}
+              className={`text-xl sm:text-2xl hover:text-red-500 hover:scale-110 ${repeat && 'text-red-500'} transition-all duration-300`}
               onClick={toggleRepeat}
             >
               <BsRepeat1 />
             </button>
+            <VolumeControl />
           </>
         )
       }

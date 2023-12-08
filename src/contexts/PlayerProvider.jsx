@@ -15,14 +15,17 @@ const PlayerProvider = ({ children }) => {
   })
   const [showed, setShowed] = useState(true)
   const [playing, setPlaying] = useState(false)
-  const [repeat, setRepeat] = useState(false)
-  const [shuffle, setShuffle] = useState(false)
+  const [repeat, setRepeat] = useState(window.localStorage.getItem('repeat') === 'true')
+  const [shuffle, setShuffle] = useState(window.localStorage.getItem('shuffle') === 'true')
   const [history, setHistory] = useState([])
   const howlerRef = useRef(null)
   const [progress, setProgress] = useState(0)
   const [currentTime, setCurrentTime] = useState('')
   const [leftTime, setLeftTime] = useState('')
   const [loading, setLoading] = useState(true)
+  const [volume, setVolume] = useState(Number(window.localStorage.getItem('volume')) || 0.5)
+  const [muted, setMuted] = useState(window.localStorage.getItem('muted') === 'true')
+  const [rate, setRate] = useState(Number(window.localStorage.getItem('rate')) || 1)
 
   useEffect(() => {
     const getTracks = async () => {
@@ -68,7 +71,13 @@ const PlayerProvider = ({ children }) => {
       setCurrentTime,
       leftTime,
       setLeftTime,
-      formatTime
+      formatTime,
+      volume,
+      setVolume,
+      muted,
+      setMuted,
+      rate,
+      setRate
     }}
     >
       {children}

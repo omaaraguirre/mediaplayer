@@ -10,7 +10,7 @@ const NowPlaying = () => {
   const { showed, currentSong } = usePlayer()
 
   return (
-    <section className={`relative flex justify-between gap-4 overflow-y-scroll transition-all duration-300 ${showed ? 'flex-1 flex-col py-5' : 'h-20 border-t border-white/30 py-3'}`}>
+    <section className={`relative flex justify-between gap-4 transition-all duration-300 ${showed ? 'flex-1 flex-col py-5' : 'h-20 border-t border-white/30 py-3'}`}>
       <Header />
       {showed && <Image />}
       <SongInfo />

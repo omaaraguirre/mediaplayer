@@ -15,7 +15,13 @@ const usePlayer = () => {
     progress, setProgress,
     currentTime, setCurrentTime,
     leftTime, setLeftTime,
-    formatTime
+    formatTime,
+    volume,
+    setVolume,
+    muted,
+    setMuted,
+    rate,
+    setRate
   } = useContext(PlayerContext)
 
   useEffect(() => {
@@ -24,8 +30,8 @@ const usePlayer = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (howlerRef?.current?.howler?.seek) {
-        const current = howlerRef.current.howler.seek()
+      if (howlerRef?.current?.seek) {
+        const current = howlerRef.current.seek()
         setCurrentTime(formatTime(current))
 
         const duration = howlerRef.current.duration()
@@ -44,10 +50,26 @@ const usePlayer = () => {
   const seek = percentage => {
     const duration = howlerRef.current.duration()
     const newTime = duration * (percentage / 100)
-    howlerRef.current.howler.seek(newTime)
+    howlerRef.current.seek(newTime)
     setProgress(percentage)
-    setCurrentTime(formatTime(newTime))
+    setCurrentTime(formatTime(howlerRef.current.seek()))
     setLeftTime(formatTime(duration - newTime))
+  }
+
+  const updateVolume = value => {
+    setVolume(value)
+    window.localStorage.setItem('volume', value)
+  }
+
+  const toggleMuted = () => {
+    window.localStorage.setItem('muted', !muted)
+    setMuted(!muted)
+  }
+
+  const updateRate = value => {
+    setRate(value)
+    howlerRef.current.rate(value)
+    window.localStorage.setItem('rate', value)
   }
 
   const showPlayer = bool => setShowed(bool)
@@ -90,16 +112,22 @@ const usePlayer = () => {
     setHistory(prevHistory => [...prevHistory, randomSong.id])
   }
 
-  const toggleRepeat = () => setRepeat(!repeat)
+  const toggleRepeat = () => {
+    howlerRef.current.loop(!repeat)
+    window.localStorage.setItem('repeat', !repeat)
+    setRepeat(!repeat)
+  }
 
   const toggleShuffle = () => {
     shuffle ? setHistory([]) : setHistory([currentSong.id])
+    window.localStorage.setItem('shuffle', !shuffle)
     setShuffle(!shuffle)
   }
 
   const endOfSongEvent = () => {
-    if (repeat) return
-    nextSong()
+    if (!howlerRef.current.loop()) {
+      nextSong()
+    }
   }
 
   return {
@@ -125,7 +153,14 @@ const usePlayer = () => {
     progress,
     setProgress,
     currentTime,
-    leftTime
+    leftTime,
+    formatTime,
+    volume,
+    setVolume: updateVolume,
+    muted,
+    toggleMuted,
+    rate,
+    setRate: updateRate
   }
 }
 

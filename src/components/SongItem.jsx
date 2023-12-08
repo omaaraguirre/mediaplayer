@@ -1,8 +1,8 @@
 import usePlayer from '../hooks/usePlayer'
 
 const SongItem = ({ song }) => {
-  const { id, image, title, artist } = song
-  const { currentSong, playSong } = usePlayer()
+  const { id, image, title, artist, duration } = song
+  const { currentSong, playSong, formatTime } = usePlayer()
 
   return (
     <button
@@ -15,10 +15,11 @@ const SongItem = ({ song }) => {
         alt={title}
         className='max-w-[50px] md:max-w-[70px] rounded-lg'
       />
-      <div className='flex flex-col text-sm'>
+      <div className='flex-1 flex flex-col text-sm'>
         <span className='font-bold'>{title}</span>
         <span className={`${id === currentSong?.id ? 'text-black' : 'text-gray-400'}`}>{artist}</span>
       </div>
+      <span className='text-xs text-gray-400'>{formatTime(duration)}</span>
     </button>
   )
 }
